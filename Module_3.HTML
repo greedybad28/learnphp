@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP & MySQL Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #CAF0F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-number {
+            font-weight: 900;
+            color: #0077B6;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #0077B6;
+            line-height: 1;
+        }
+        .card-header {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #004E89;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#004E89] to-[#00A6ED]">
+                PHP & Databases
+            </h1>
+            <p class="text-lg md:text-2xl text-[#0077B6] font-semibold mt-2">
+                How Your Code *Actually* Talks to a Database
+            </p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">What is a Database, Really?</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    It's not as complex as it sounds. The easiest way to think about it is just a massive, super-smart collection of Excel sheets. Here's the breakdown:
+                </p>
+                
+                <div class="flex flex-col md:flex-row justify-center items-center md:items-start space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    
+                    <div class="p-4 border-4 border-[#004E89] rounded-lg w-full md:w-1/4">
+                        <h3 class="font-bold text-lg text-[#004E89]">DBMS (MySQL)</h3>
+                        <p class="text-sm">The "App" (like Excel)</p>
+                    </div>
+                    
+                    <div class="hidden md:block flow-arrow mt-6">→</div>
+                    <div class="md:hidden flow-arrow">↓</div>
+
+                    <div class="p-4 border-2 border-[#0077B6] rounded-lg w-full md:w-1/4">
+                        <h3 class="font-bold text-lg text-[#0077B6]">Database ("school")</h3>
+                        <p class="text-sm">The "File" (like a `.xlsx`)</p>
+                    </div>
+                    
+                    <div class="hidden md:block flow-arrow mt-6">→</div>
+                    <div class="md:hidden flow-arrow">↓</div>
+
+                    <div class="p-4 border-2 border-[#00A6ED] rounded-lg w-full md:w-1/4">
+                        <h3 class="font-bold text-lg text-[#00A6ED]">Table ("students")</h3>
+                        <p class="text-sm">The "Sheet"</p>
+                    </div>
+
+                    <div class="hidden md:block flow-arrow mt-6">→</div>
+                    <div class="md:hidden flow-arrow">↓</div>
+
+                    <div class="p-4 border-2 border-[#90E0EF] rounded-lg w-full md:w-1/4">
+                        <h3 class="font-bold text-lg text-gray-700">Field & Record</h3>
+                        <p class="text-sm">The Columns & Rows</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">The 5 SQL Commands You'll *Actually* Use</h2>
+                <p class="text-center text-gray-700 mb-6">You use SQL (Structured Query Language) to "talk" to the database. You really only need to know five commands to get started.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                    <div class="bg-blue-50 p-4 rounded-lg shadow-md border border-blue-200">
+                        <h3 class="card-header">SELECT</h3>
+                        <p class="text-sm">GETS data from a table.</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg shadow-md border border-blue-200">
+                        <h3 class="card-header">INSERT</h3>
+                        <p class="text-sm">ADDS new rows to a table.</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg shadow-md border border-blue-200">
+                        <h3 class="card-header">UPDATE</h3>
+                        <p class="text-sm">CHANGES data in existing rows.</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg shadow-md border border-blue-200">
+                        <h3 class="card-header">CREATE</h3>
+                        <p class="text-sm">MAKES a new table or database.</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg shadow-md border border-red-200 col-span-2 md:col-span-1">
+                        <h3 class="card-header text-red-600">DELETE 💀</h3>
+                        <p class="text-sm">REMOVES rows. (Be careful!)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">Key Data Types</h2>
+                <p class="text-center text-gray-700 mb-6">When you create a table, you have to tell each column what *kind* of data to expect. You'll use these three the most:</p>
+                <div class="chart-container">
+                    <canvas id="dataTypesChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">Connecting PHP to MySQL: The Right Way</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-red-50 p-6 rounded-lg border-2 border-red-300 shadow-lg">
+                        <h3 class="text-2xl font-bold text-red-700 mb-3 text-center">The ANCIENT Way ☠️</h3>
+                        <p class="text-center font-semibold text-red-600 text-lg mb-4"><code>mysql_connect()</code></p>
+                        <p class="text-gray-700 mb-4">You'll see this in old tutorials. **DO NOT USE IT.**</p>
+                        <ul class="list-disc list-inside space-y-2 text-red-700">
+                            <li><span class="font-bold">DEPRECATED:</span> It doesn't even exist in modern PHP. Your code will just crash.</li>
+                            <li><span class="font-bold">DANGEROUS:</span> It's wide open to SQL Injection attacks, where hackers can steal or delete your whole database.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg border-2 border-green-300 shadow-lg">
+                        <h3 class="text-2xl font-bold text-green-700 mb-3 text-center">The MODERN Way ✨</h3>
+                        <p class="text-center font-semibold text-green-600 text-lg mb-4"><code>new PDO()</code></video>
+                        <p class="text-gray-700 mb-4">This is the correct, secure, and modern way to connect.</p>
+                        <ul class="list-disc list-inside space-y-2 text-green-700">
+                            <li><span class="font-bold">SECURE:</span> It uses "Prepared Statements" that 100% prevent SQL Injection.</li>
+                            <li><span class="font-bold">MODERN:</span> This is the standard. It's what all professionals and modern tutorials use.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">The 4-Step PDO Process</h2>
+                <p class="text-center text-gray-700 mb-6">Using PDO is a simple 4-step process every time you need to talk to the database.</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="bg-[#E0F7FA] p-4 rounded-lg shadow text-center">
+                        <span class="block text-xs font-bold text-[#0077B6]">STEP 1</span>
+                        <h3 class="text-lg font-semibold text-[#004E89]">CONNECT</h3>
+                        <p class="text-sm text-gray-700"><code>new PDO(...)</code></p>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="bg-[#E0F7FA] p-4 rounded-lg shadow text-center">
+                        <span class="block text-xs font-bold text-[#0077B6]">STEP 2</span>
+                        <h3 class="text-lg font-semibold text-[#004E89]">PREPARE</h3>
+                        <p class="text-sm text-gray-700"><code>$pdo->prepare("SELECT * FROM users WHERE id = ?")</code></p>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="bg-[#E0F7FA] p-4 rounded-lg shadow text-center">
+                        <span class="block text-xs font-bold text-[#0077B6]">STEP 3</span>
+                        <h3 class="text-lg font-semibold text-[#004E89]">EXECUTE</h3>
+                        <p class="text-sm text-gray-700"><code>$stmt->execute([$user_id])</code></p>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="bg-[#E0F7FA] p-4 rounded-lg shadow text-center">
+                        <span class="block text-xs font-bold text-[#0077B6]">STEP 4</span>
+                        <h3 class="text-lg font-semibold text-[#004E89]">FETCH</h3>
+                        <p class="text-sm text-gray-700"><code>$user = $stmt->fetch()</code></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8 flex flex-col justify-center items-center text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6">What is phpMyAdmin?</h2>
+                <h3 class="kpi-number text-7xl md:text-8xl">"Easy Mode"</h3>
+                <p class="text-lg text-gray-700 mt-4 max-w-md">
+                    It's just a website that gives you buttons and forms to manage your database. When you click "Create Table," it just writes and runs the `CREATE TABLE` SQL command *for you*. It's perfect for setup, testing, and seeing your data visually.
+                </p>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 md:mt-16">
+            <p class="text-lg font-semibold text-[#0077B6]">Module 3, Demystified.</p>
+            <p class="text-gray-600">Now go build something!</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            function wrapLabels(label) {
+                const maxChars = 16;
+                if (typeof label === 'string' && label.length > maxChars) {
+                    let words = label.split(' ');
+                    let lines = [];
+                    let currentLine = '';
+                    for (let word of words) {
+                        if ((currentLine + word).length > maxChars) {
+                            lines.push(currentLine.trim());
+                            currentLine = '';
+                        }
+                        currentLine += word + ' ';
+                    }
+                    lines.push(currentLine.trim());
+                    return lines;
+                }
+                return label;
+            }
+            
+            const tooltipTitleCallback = function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+
+            const chartColors = {
+                blue: '#00A6ED',
+                darkBlue: '#0077B6',
+                lightBlue: '#90E0EF',
+                grey: '#E2E8F0'
+            };
+
+            const dataTypesData = {
+                labels: [
+                    'VARCHAR (Text)', 
+                    'INT (Numbers)', 
+                    'DATE/TIME', 
+                    'Other (DECIMAL, etc)'
+                ].map(wrapLabels),
+                datasets: [{
+                    label: 'Common Data Types',
+                    data: [50, 30, 15, 5],
+                    backgroundColor: [
+                        chartColors.blue,
+                        chartColors.darkBlue,
+                        chartColors.lightBlue,
+                        chartColors.grey
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            };
+
+            const dataTypesCtx = document.getElementById('dataTypesChart').getContext('2d');
+            new Chart(dataTypesCtx, {
+                type: 'doughnut',
+                data: dataTypesData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Inter',
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

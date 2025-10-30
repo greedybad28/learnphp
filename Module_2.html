@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP State & Forms Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #CAF0F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-number {
+            font-weight: 900;
+            color: #0077B6;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #0077B6;
+            line-height: 1;
+        }
+        .card-header {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #004E89;
+        }
+        .flow-box {
+            background-color: #E0F7FA;
+            border: 1px solid #90E0EF;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#004E89] to-[#00A6ED]">
+                PHP State & Forms
+            </h1>
+            <p class="text-lg md:text-2xl text-[#0077B6] font-semibold mt-2">
+                Making a Website *Actually* Remember You
+            </p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">The Big Problem: The Internet Has No Memory</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    The internet (HTTP) is "stateless." That's a fancy way of saying it has the memory of a goldfish. Every time you click a link or load a new page, the server *completely forgets who you are*. This is a huge problem. How do you stay logged in? How does a shopping cart work?
+                    <br><br>
+                    You solve this with two methods: **Cookies** and **Sessions**.
+                </p>
+            </section>
+
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">Solution 1: Cookies (The Nametag)</h2>
+                <p class="text-gray-700 mb-6">
+                    A cookie is a tiny piece of data the server tells *your* browser to hold onto. It's like a nametag or a wristband the server gives you to wear. When you go back to the site, the server just asks to see your nametag.
+                </p>
+                <div class="bg-blue-50 p-4 rounded-lg shadow-inner">
+                    <h3 class="card-header mb-2">How to Use Cookies</h3>
+                    <p class="mb-2 text-sm"><strong class="text-[#0077B6]">To Create:</strong> Use <code>setcookie()</code>. This function is a diva—it *must* be called before *any* HTML is sent to the browser. Not even a space.</p>
+                    <code class="block bg-gray-100 p-2 rounded text-xs">setcookie("username", "remo", time() + 86400);</code>
+                    <p class="mb-2 mt-2 text-sm"><strong class="text-[#0077B6]">To Read:</strong> PHP automatically puts all cookies into a "superglobal" array called <code>$_COOKIE</code>.</p>
+                    <code class="block bg-gray-100 p-2 rounded text-xs">echo $_COOKIE['username']; // Outputs "remo"</code>
+                    <p class="mb-2 mt-2 text-sm"><strong class="text-[#0077B6]">To Delete:</strong> This part's funny. You just set the *same cookie* but with an expiration time in the *past*. The browser sees it's "expired" and throws it away.</p>
+                    <code class="block bg-gray-100 p-2 rounded text-xs">setcookie("username", "", time() - 3600);</code>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">Cookies: Pros vs. Cons</h2>
+                <p class="text-gray-700 mb-6">
+                    Cookies are simple, but they have major drawbacks because the data is stored on the *user's* computer.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <h3 class="card-header text-green-700">Pros</h3>
+                        <ul class="list-disc list-inside text-sm text-green-600 mt-2">
+                            <li>Simple to use.</li>
+                            <li>Good for non-sensitive data.</li>
+                            <li>Can last for a long time (e.g., "Remember Me").</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                        <h3 class="card-header text-red-700">Cons</h3>
+                        <ul class="list-disc list-inside text-sm text-red-600 mt-2">
+                            <li>**INSECURE!** A user can see and edit their cookies. Never store a password or credit card info in one.</li>
+                            <li>Small size limit (only ~4KB).</li>
+                            <li>Users can block or delete them.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">Solution 2: Sessions (The Server-Side Locker)</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    This is the *better, secure* way. A session is like a private locker that only *you* can access, but the locker itself *stays on the server*. All you carry is the key.
+                </p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flow-box">
+                        <h3 class="card-header">1. You log in or visit the site.</h3>
+                        <p>You call <code>session_start()</code> at the *very* top of your PHP file. (It's a diva, just like <code>setcookie()</code>).</p>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box">
+                        <h3 class="card-header">2. The Server Creates a Secret File</h3>
+                        <p>The server creates a secret file *on its own hard drive* (e.g., <code>/tmp/sess_abc123</code>) and puts your data inside it using the <code>$_SESSION</code> array.</p>
+                        <code class="block bg-gray-100 p-2 rounded text-xs mt-2">$_SESSION['user_id'] = 42;</code>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box">
+                        <h3 class="card-header">3. The Server Gives You *One* Tiny Cookie</h3>
+                        <p>All your browser gets is a *single, simple* cookie that's just a random ID. It's your locker key.</p>
+                        <code class="block bg-gray-100 p-2 rounded text-xs mt-2">Cookie: PHPSESSID = "abc123"</code>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box">
+                        <h3 class="card-header">4. You Visit a New Page</h3>
+                        <p>Your browser automatically shows the server your "key" (the session cookie). The server calls <code>session_start()</code> again.</p>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box">
+                        <h3 class="card-header">5. The Server Finds Your File</h3>
+                        <p>The server uses your "key" (<code>abc123</code>) to find *your* secret file, opens it, and instantly repopulates the <code>$_SESSION</code> array. **Bam! You're logged in.** All your private data was safe on the server the whole time.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">How to Use Sessions</h2>
+                <p class="text-gray-700 mb-6">
+                    Using them is super easy. Just remember to put <code>session_start()</code> at the top of *every* page that needs to know who the user is.
+                </p>
+                <div class="bg-blue-50 p-4 rounded-lg shadow-inner space-y-4">
+                    <div>
+                        <h3 class="card-header">1. To Start / Resume</h3>
+                        <code class="block bg-gray-100 p-2 rounded text-xs">session_start();</code>
+                    </div>
+                    <div>
+                        <h3 class="card-header">2. To Store Data</h3>
+                        <code class="block bg-gray-100 p-2 rounded text-xs">$_SESSION['username'] = "remo";</code>
+                    </div>
+                    <div>
+                        <h3 class="card-header">3. To Read Data</h3>
+                        <code class="block bg-gray-100 p-2 rounded text-xs">echo "Welcome back, " . $_SESSION['username'];</code>
+                    </div>
+                    <div>
+                        <h3 class="card-header">4. To Log Out (Destroy)</h3>
+                        <code class="block bg-gray-100 p-2 rounded text-xs">session_start();<br>session_unset();<br>session_destroy();</code>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">PHP "Superglobals"</h2>
+                <p class="text-gray-700 mb-6">
+                    PHP gives you a bunch of "magic" variables that are *always* available, anywhere in your code. They all start with <code>$_</code> and are in ALL CAPS. They're how PHP gets data from the outside world.
+                </p>
+                <div class="chart-container">
+                    <canvas id="superglobalsChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">The Big One: `$_GET` vs. `$_POST`</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    This is how you get data from HTML forms. The `method` attribute on your `<form>` tag controls which one of these you use. Choosing the right one is *critical* for security.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300 shadow-lg">
+                        <h3 class="text-2xl font-bold text-[#0077B6] mb-3 text-center">`method="get"` → `$_GET`</h3>
+                        <p class="text-gray-700 mb-4">
+                            Sticks all the form data *into the URL bar* for everyone to see.
+                        </p>
+                        <code class="block bg-gray-100 p-2 rounded text-xs mb-4 text-center">search.php?query=my+stuff</code>
+                        <h4 class="font-bold text-[#004E89]">Good For:</h4>
+                        <ul class="list-disc list-inside text-sm text-gray-700 mb-4">
+                            <li>Search queries</li>
+                            <li>Page numbers</li>
+                            <li>Anything you *want* to be bookmarkable.</li>
+                        </ul>
+                        <h4 class="font-bold text-red-600">Bad For:</h4>
+                        <ul class="list-disc list-inside text-sm text-red-600">
+                            <li>**PASSWORDS!** (Never, ever!)</li>
+                            <li>Anything sensitive (emails, etc.)</li>
+                            <li>Has a small size limit (~2000 chars).</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg border-2 border-green-300 shadow-lg">
+                        <h3 class="text-2xl font-bold text-green-700 mb-3 text-center">`method="post"` → `$_POST`</h3>
+                        <p class="text-gray-700 mb-4">
+                            Sends the data *invisibly* in the body of the request. The URL stays clean.
+                        </p>
+                        <code class="block bg-gray-100 p-2 rounded text-xs mb-4 text-center">login.php</code>
+                        <h4 class="font-bold text-green-600">Good For:</h4>
+                        <ul class="list-disc list-inside text-sm text-gray-700 mb-4">
+                            <li>**PASSWORDS!** (Always!)</li>
+                            <li>Login forms, sign-up forms</li>
+                            <li>Credit card numbers</li>
+                            <li>Anything sensitive or long.</li>
+                        </ul>
+                        <h4 class="font-bold text-gray-600">Bad For:</h4>
+                        <ul class="list-disc list-inside text-sm text-gray-600">
+                            <li>Things you want to bookmark.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">Form Validation: Never. Trust. The. User.</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    Validation is just checking the user's data before you use it. You **must** do this to prevent getting hacked or filling your database with junk. There are two types:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-100 p-6 rounded-lg border border-gray-300">
+                        <h3 class="text-xl font-bold text-gray-700 mb-3">Client-Side (in HTML/JavaScript)</h3>
+                        <p class="text-gray-600 mb-4">This is the "polite check." It happens *in the browser* before the form is even submitted. It's for **user convenience**, not security.</p>
+                        <code class="block bg-white p-2 rounded text-xs">&lt;input type="email" required&gt;</code>
+                        <p class="text-gray-600 mt-4">A hacker can just edit the HTML and bypass this in 5 seconds.</p>
+                    </div>
+                    <div class="bg-[#004E89] p-6 rounded-lg border border-blue-300 shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Server-Side (in PHP)</h3>
+                        <p class="text-blue-100 mb-4">This is the "real check." It happens *on your server* after the data is sent. This is your **real security**. You *must* always do this.</p>
+                        <code class="block bg-gray-800 text-white p-2 rounded text-xs">if (empty($_POST['name'])) {<br>  die("Name is required!");<br>}</code>
+                        <p class="text-blue-100 mt-4">This check is un-skippable.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">Validation Tools: `isset()` vs. `empty()`</h2>
+                <p class="text-gray-700 mb-6">
+                    These are your two main "bouncer" functions for checking data. They seem similar, but they do very different things.
+                </row>
+                <div>
+                    <h3 class="card-header"><code>isset($var)</code></h3>
+                    <p class="text-gray-600 mb-2">Asks: "Does this variable *exist* and is it *not* NULL?"</p>
+                    <ul class="text-sm space-y-1">
+                        <li><code>isset($a)</code> on <code>$a = "";</code> → <span class="font-bold text-green-600">true</span></li>
+                        <li><code>isset($a)</code> on <code>$a = 0;</code> → <span class="font-bold text-green-600">true</span></li>
+                        <li><code>isset($a)</code> on <code>$a = false;</code> → <span class="font-bold text-green-600">true</span></li>
+                        <li><code>isset($a)</code> on <code>$a = null;</code> → <span class="font-bold text-red-600">false</span></li>
+                    </ul>
+                    <p class="text-sm font-bold mt-2"><strong>Use this to:</strong> Check if a form button was clicked (e.g., <code>isset($_POST['submit'])</code>).</p>
+                </div>
+                <div class="mt-6">
+                    <h3 class="card-header"><code>empty($var)</code></h3>
+                    <p class="text-gray-600 mb-2">Asks: "Is this variable *basically* empty?"</p>
+                    <ul class="text-sm space-y-1">
+                        <li><code>empty($a)</code> on <code>$a = "";</code> → <span class="font-bold text-green-600">true</span></li>
+                        <li><code>empty($a)</code> on <code>$a = 0;</code> → <span class="font-bold text-green-600">true</span></li>
+                        <li><code>empty($a)</code> on <code>$a = false;</code> → <span class="font-bold text-green-600">true</span></li>
+                        <li><code>empty($a)</code> on <code>$a = null;</code> → <span class="font-bold text-green-600">true</span></li>
+                    </ul>
+                    <p class="text-sm font-bold mt-2"><strong>Use this to:</strong> Check if a user *actually typed something* in a required field (e.g., <code>empty($_POST['name'])</code>).</p>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">When Stuff Breaks: Errors vs. Exceptions</h2>
+                <p class="text-gray-700 mb-6">Sometimes, things just go wrong. Here's how PHP handles it.</p>
+                
+                <h3 class="card-header mb-2">The "Old-School" Errors</h3>
+                <p class="text-gray-600 mb-4">PHP just... tells you what broke. Severity matters.</p>
+                <ul class="space-y-2">
+                    <li class="border-l-4 border-gray-400 pl-3">
+                        <strong>Notice:</strong> "Meh." (e.g., using a variable you never defined). The script keeps running.
+                    </li>
+                    <li class="border-l-4 border-yellow-500 pl-3">
+                        <strong>Warning:</strong> "Uhh..." (e.g., trying to <code>include()</code> a file that doesn't exist). The script *also* keeps running, but it's probably not doing what you want.
+                    </li>
+                    <li class="border-l-4 border-red-600 pl-3">
+                        <strong>Fatal Error:</strong> "GAME OVER." (e.g., calling a function that doesn't exist). The script just dies. Right there.
+                    </li>
+                </ul>
+
+                <h3 class="card-header mt-8 mb-2">The "Modern" Exceptions</h3>
+                <p class="text-gray-600 mb-4">This is the *grown-up* way to handle errors. You *plan* for them to happen, so the site doesn't just crash.</p>
+                <div class="space-y-4">
+                    <div class="flow-box"><strong>TRY:</strong> "Run this *risky* code..." (e.g., connect to a database, divide by a user's number).</div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box"><strong>THROW:</strong> "If a bad thing happens (<code>if $divisor == 0</code>), PULL THE FIRE ALARM!" (<code>throw new Exception()</code>).</div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box"><strong>CATCH:</strong> "This block is the *firefighter*. It *catches* the alarm and handles it gracefully (<code>echo "You can't divide by zero, bro."</code>) instead of letting the whole site crash."</div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 md:mt-16">
+            <p class="text-lg font-semibold text-[#0077B6]">Module 2, Explained.</p>
+            <p class="text-gray-600">Now you know how to handle data and state. Nice.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            function wrapLabels(label) {
+                const maxChars = 16;
+                if (typeof label === 'string' && label.length > maxChars) {
+                    let words = label.split(' ');
+                    let lines = [];
+                    let currentLine = '';
+                    for (let word of words) {
+                        if ((currentLine + word).length > maxChars) {
+                            lines.push(currentLine.trim());
+                            currentLine = '';
+                        }
+                        currentLine += word + ' ';
+                    }
+                    lines.push(currentLine.trim());
+                    return lines;
+                }
+                return label;
+            }
+            
+            const tooltipTitleCallback = function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+
+            const chartColors = {
+                blue: '#00A6ED',
+                darkBlue: '#0077B6',
+                lightBlue: '#90E0EF',
+                grey: '#E2E8F0',
+                blue_bg: '#E0F7FA'
+            };
+
+            const dataTypesData = {
+                labels: [
+                    '$_SESSION (Your Locker)', 
+                    '$_POST (Hidden Data)', 
+                    '$_GET (URL Data)', 
+                    '$_FILES (Uploads)', 
+                    '$_COOKIE (Nametags)'
+                ].map(wrapLabels),
+                datasets: [{
+                    label: 'Common Superglobals',
+                    data: [35, 30, 20, 10, 5],
+                    backgroundColor: [
+                        chartColors.darkBlue,
+                        chartColors.blue,
+                        chartColors.lightBlue,
+                        chartColors.grey,
+                        chartColors.blue_bg
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            };
+
+            const dataTypesCtx = document.getElementById('superglobalsChart').getContext('2d');
+            new Chart(dataTypesCtx, {
+                type: 'pie',
+                data: dataTypesData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Inter',
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
