@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Modules Homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #CAF0F8;
+        }
+        .card-header {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #004E89;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl min-h-screen flex flex-col justify-center">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#004E89] to-[#00A6ED]">
+                PHP: The Full Breakdown
+            </h1>
+            <p class="text-lg md:text-2xl text-[#0077B6] font-semibold mt-3">
+                Your modules. All the notes. Let's dive in.
+            </p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+
+            <a href="Module_1.html" class="block bg-white rounded-2xl shadow-xl p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                <h2 class="card-header mb-3">Module 1: The Basics</h2>
+                <p class="text-gray-700">
+                    What is PHP? Static vs. Dynamic, Client vs. Server, and all the core building blocks like variables, loops, and `if` statements.
+                </p>
+            </a>
+
+            <a href="Module_2.html" class="block bg-white rounded-2xl shadow-xl p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                <h2 class="card-header mb-3">Module 2: State & Forms</h2>
+                <p class="text-gray-700">
+                    How sites remember you. We cover Cookies, Sessions (the right way), and handling user data from forms with `$_GET` and `$_POST`.
+                </p>
+            </a>
+
+            <a href="Module_3.html" class="block bg-white rounded-2xl shadow-xl p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                <h2 class="card-header mb-3">Module 3: Databases</h2>
+                <p class="text-gray-700">
+                    Making your app store data. We hit the 5 big SQL commands, data types, and the *critical* modern way to connect to MySQL with PDO.
+                </p>
+            </a>
+
+        </main>
+
+        <footer class="text-center mt-12 md:mt-16">
+            <p class="text-lg font-semibold text-[#0077B6]">Let's get it.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

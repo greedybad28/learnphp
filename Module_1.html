@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP & Web Dev Basics Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #CAF0F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+        }
+        .bar-chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-number {
+            font-weight: 900;
+            color: #0077B6;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #0077B6;
+            line-height: 1;
+        }
+        .card-header {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #004E89;
+        }
+        .flow-box {
+            background-color: #E0F7FA;
+            border: 1px solid #90E0EF;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#004E89] to-[#00A6ED]">
+                PHP & Web Dev Basics
+            </h1>
+            <p class="text-lg md:text-2xl text-[#0077B6] font-semibold mt-2">
+                What's *Actually* Happening When You Load a Website?
+            </p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">Web Page vs. Website</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    This one's simple, but it's the foundation for everything.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300 shadow-lg text-center">
+                        <h3 class="text-2xl font-bold text-[#0077B6] mb-3">Web Page</h3>
+                        <p class="text-gray-700">This is a *single document*. Think <code>contact.html</code> or <code>about.html</code>. It's just one file you're looking at.</p>
+                    </div>
+                    <div class="bg-[#004E89] p-6 rounded-lg shadow-lg text-center">
+                        <h3 class="text-2xl font-bold text-white mb-3">Website</h3>
+                        <p class="text-blue-100">This is the *entire collection* of pages, all linked together under one domain (like <code>google.com</code>). It's the whole "house," not just one "room."</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">The Real Difference: Static vs. Dynamic</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    This is the most important concept. "Static" is the old way, "Dynamic" is what PHP makes possible.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-100 p-6 rounded-lg border border-gray-300">
+                        <h3 class="text-xl font-bold text-gray-700 mb-3">Static (The "Poster")</h3>
+                        <p class="text-gray-600 mb-4">A static site is just plain HTML, CSS, and JavaScript files sitting on a server. When you ask for the page, the server just finds that *exact file* and sends it to you. That's it.</p>
+                        <ul class="list-disc list-inside text-sm text-gray-700">
+                            <li>The content is *fixed*. It's the same for every single person.</li>
+                            <li>To change the page, a developer has to *manually edit the HTML file*.</li>
+                            <li><strong>Good for:</strong> Simple portfolios, restaurant info pages, etc.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300 shadow-lg">
+                        <h3 class="text-xl font-bold text-[#004E89] mb-3">Dynamic (The "Video Game")</h3>
+                        <p class="text-blue-800 mb-4">A dynamic site is *built* for you on-the-fly. There is no finished HTML file just sitting there. When you ask for the page, the server *runs PHP code*. That code talks to a database, pulls your username, finds your posts, and *then* builds a custom HTML page just for you.</p>
+                        <ul class="list-disc list-inside text-sm text-blue-700">
+                            <li>The content is *personalized*. Facebook, Gmail, etc.</li>
+                            <li>The page is *generated* by code (like PHP, Python, or Node.js).</li>
+                            <li><strong>Good for:</strong> Literally everything else (social media, e-commerce, blogs).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bar-chart-container mt-8">
+                    <canvas id="staticDynamicChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">Client vs. Server (Who Does the Work?)</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    "Client-side" and "Server-side" just mean *where* the code runs. This is simple: the "Client" is your browser, and the "Server" is the big computer somewhere else.
+                </p>
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-start space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    
+                    <div class="flow-box w-full md:w-1/3">
+                        <h3 class="card-header">1. CLIENT (Your Browser)</h3>
+                        <p>This is the "customer." It *asks* for stuff. It only runs **Client-Side** code (JavaScript) to make the page you're *already looking at* interactive (like image sliders, form popups, etc.).</p>
+                    </div>
+                    
+                    <div class="flex-col text-center">
+                        <div class="flow-arrow">→</div>
+                        <p class="text-sm font-bold text-[#0077B6]">HTTP Request</p>
+                        <p class="text-sm font-bold text-[#0077B6]">"GET /index.php"</p>
+                        <div class="flow-arrow mt-4">←</div>
+                        <p class="text-sm font-bold text-[#0077B6]">HTTP Response</p>
+                        <p class="text-sm font-bold text-[#0077B6]">"Here's your HTML!"</p>
+                    </div>
+
+                    <div class="flow-box w-full md:w-1/3">
+                        <h3 class="card-header">2. SERVER (The "Kitchen")</h3>
+                        <p>This is the "worker." It *does* the stuff. It runs **Server-Side** code (PHP) *before* the page is ever sent to you. It builds the page, gets data from the database, and sends the *final, plain HTML* back to the client.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">How a PHP Script *Actually* Works</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    The most important thing to get is that **the user *never* sees your PHP code.** Their browser only gets the final HTML result.
+                </p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flow-box">
+                        <h3 class="card-header">1. Request</h3>
+                        <p>You type <code>example.com/index.php</code> in your browser. Your browser sends a request to the server.</p>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box">
+                        <h3 class="card-header">2. Server Sees ".php"</h3>
+                        <p>The server (e.g., Apache) sees the <code>.php</code> extension. It *doesn't* just send the file. It says, "Oh, this is a PHP file! I need to *run* this first."</p>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box">
+                        <h3 class="card-header">3. PHP Engine Activates</h3>
+                        <p>The server hands the file to the PHP "engine." The engine reads the file from top to bottom and *executes all the PHP code* inside the <code>&lt;?php ... ?&gt;</code> tags. This is where it talks to the database, does calculations, etc.</p>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box">
+                        <h3 class="card-header">4. HTML is Generated</h3>
+                        <p>The PHP code (like <code>echo "&lt;h1&gt;Hello, Remo&lt;/h1&gt;";</code>) outputs plain text. The engine takes all that text and all the plain HTML in the file and builds *one, final, plain HTML document*. All the PHP code disappears.</p>
+                    </div>
+                    <div class="self-center flow-arrow">↓</div>
+                    <div class="flow-box">
+                        <h3 class="card-header">5. Response</h3>
+                        <p>The server sends this *newly-generated HTML file* back to your browser. Your browser has no idea PHP was ever involved. It just sees HTML and displays it.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">Core Data Types</h2>
+                <p class="text-gray-700 mb-6">
+                    Variables (which always start with <code>$</code>) are just containers. These are the main "shapes" of data they can hold.
+                </p>
+                <div class="chart-container">
+                    <canvas id="dataTypesChart"></canvas>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-6 text-center">Operators (The "Tools")</h2>
+                <p class="text-gray-700 mb-6">
+                    These are the symbols you use to *do stuff* with your variables.
+                </p>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="card-header">Arithmetic Operators</h3>
+                        <p class="text-gray-600">The basics. <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>%</code> (modulus, for finding the *remainder* of a division).</p>
+                    </div>
+                    <div>
+                        <h3 class="card-header">Comparison Operators</h3>
+                        <p class="text-gray-600">Used for `if` statements. <code>==</code> (is equal), <code>!=</code> (not equal), <code>></code> (greater than), <code><=</code> (less than or equal).</p>
+                    </div>
+                    <div>
+                        <h3 class="card-header">Logical Operators</h3>
+                        <p class="text-gray-600">For combining checks. <code>&&</code> (AND), <code>||</code> (OR), <code>!</code> (NOT).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">Control Structures (Making Decisions)</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    This is how your code stops running in a straight line and starts making choices.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300 shadow">
+                        <h3 class="text-xl font-bold text-[#0077B6] mb-3">`if` / `elseif` / `else`</h3>
+                        <p class="text-gray-700">This is your bouncer. It checks one condition at a time. "Are you 18? `if ($age > 18)`. No? `else` you can't come in."</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300 shadow">
+                        <h3 class="text-xl font-bold text-[#0077B6] mb-3">`switch`</h3>
+                        <p class="text-gray-700">This is a cleaner `if` statement for when you're checking *one variable* against *many possible values*. "Check `$color`: is it 'red'? 'blue'? 'green'?..."</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#004E89] mb-8 text-center">Loops (Doing Stuff Over and Over)</h2>
+                <p class="text-center text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                    Loops are your workhorses. They save you from writing the same code a million times.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flow-box">
+                        <h3 class="card-header">`for` Loop</h3>
+                        <p>The "Counter." Use this when you *know* exactly how many times you need to do something. "Run this code *exactly 10 times*."</p>
+                    </div>
+                    <div class="flow-box">
+                        <h3 class="card-header">`while` Loop</h3>
+                        <p>The "Sentry." Use this when you *don't know* how many times. "Keep running this code *as long as* `x` is true." It checks the condition *before* each loop.</p>
+                    </div>
+                    <div class="flow-box">
+                        <h3 class="card-header">`foreach` Loop</h3>
+                        <p>The "Array Specialist." This is the easiest and best way to go through an array. "Take this array of `_names_` and do something *for each* one."</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 md:mt-16">
+            <p class="text-lg font-semibold text-[#0077B6]">Module 1, Explained.</p>
+            <p class="text-gray-600">Now you've got the foundations down. Solid.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            function wrapLabels(label) {
+                const maxChars = 16;
+                if (typeof label === 'string' && label.length > maxChars) {
+                    let words = label.split(' ');
+                    let lines = [];
+                    let currentLine = '';
+                    for (let word of words) {
+                        if ((currentLine + word).length > maxChars) {
+                            lines.push(currentLine.trim());
+                            currentLine = '';
+                        }
+                        currentLine += word + ' ';
+                    }
+                    lines.push(currentLine.trim());
+                    return lines;
+                }
+                return label;
+            }
+            
+            const tooltipTitleCallback = function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+
+            const chartColors = {
+                blue: '#00A6ED',
+                darkBlue: '#0077B6',
+                lightBlue: '#90E0EF',
+                grey: '#E2E8F0',
+                blue_bg: '#E0F7FA'
+            };
+
+            const dataTypesData = {
+                labels: [
+                    'String (text)', 
+                    'Integer (whole numbers)', 
+                    'Array (lists)', 
+                    'Boolean (true/false)',
+                    'Float (decimals)',
+                    'NULL (nothing)'
+                ].map(wrapLabels),
+                datasets: [{
+                    label: 'Common Data Types',
+                    data: [40, 20, 15, 10, 10, 5],
+                    backgroundColor: [
+                        chartColors.darkBlue,
+                        chartColors.blue,
+                        chartColors.lightBlue,
+                        chartColors.blue_bg,
+                        chartColors.grey,
+                        '#CBD5E1'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            };
+
+            const dataTypesCtx = document.getElementById('dataTypesChart').getContext('2d');
+            new Chart(dataTypesCtx, {
+                type: 'doughnut',
+                data: dataTypesData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Inter',
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+
+            const staticDynamicData = {
+                labels: ['Interactivity', 'Complexity', 'Maintenance', 'Scalability'],
+                datasets: [
+                    {
+                        label: 'Static Site',
+                        data: [2, 1, 1, 3],
+                        backgroundColor: chartColors.grey,
+                        borderColor: '#CBD5E1',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Dynamic Site (PHP)',
+                        data: [9, 8, 7, 9],
+                        backgroundColor: chartColors.blue,
+                        borderColor: chartColors.darkBlue,
+                        borderWidth: 1
+                    }
+                ]
+            };
+            
+            const staticDynamicCtx = document.getElementById('staticDynamicChart').getContext('2d');
+            new Chart(staticDynamicCtx, {
+                type: 'bar',
+                data: staticDynamicData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
